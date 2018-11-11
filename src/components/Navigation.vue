@@ -18,6 +18,12 @@
             Dashboard
           </router-link>
         </md-list-item>
+        <md-list-item class="navigation-list-item">
+          <md-icon>code</md-icon>
+          <router-link to="/treasury" class="md-list-item-text">
+            Treasury
+          </router-link>
+        </md-list-item>
 
       </md-list>
     </md-drawer>
