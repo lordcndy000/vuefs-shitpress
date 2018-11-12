@@ -14,13 +14,13 @@
       <md-list class="navigation-list">
         <md-list-item class="navigation-list-item">
           <md-icon>view_module</md-icon>
-          <router-link to="/dashboard" class="md-list-item-text">
+          <router-link active-class="navigation-list-item--active" to="/dashboard" class="md-list-item-text">
             Dashboard
           </router-link>
         </md-list-item>
         <md-list-item class="navigation-list-item">
           <md-icon>code</md-icon>
-          <router-link to="/treasury" class="md-list-item-text">
+          <router-link active-class="navigation-list-item--active" to="/treasury" class="md-list-item-text">
             Treasury
           </router-link>
         </md-list-item>
@@ -46,6 +46,9 @@ export default {
     &-item {
       a {
         color: inherit;
+        &.navigation-list-item--active {
+          color: $primary;
+        }
       }
     }
   }

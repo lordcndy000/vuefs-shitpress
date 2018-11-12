@@ -1,7 +1,6 @@
 <template>
   <md-app>
     <md-app-content>
-      <div class="md-headline">Treasury</div>
       <Treasures />
     </md-app-content>
   </md-app>
