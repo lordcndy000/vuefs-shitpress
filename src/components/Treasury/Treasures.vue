@@ -1,14 +1,24 @@
 <template>
   <div>
-    <md-table v-model="searched" md-sort="name" md-sort-order="asc" md-card md-fixed-header>
+    <md-table v-model="searched" @md-selected="onSelect" md-sort="name" md-sort-order="asc" md-card md-fixed-header>
       <md-table-toolbar>
-        <div class="md-toolbar-section-start">
+        <!-- <div class="md-toolbar-section-start">
           <h1 class="md-title">Treasury</h1>
-        </div>
+        </div> -->
 
         <md-field md-clearable class="md-toolbar-section-end">
           <md-input placeholder="Search by title..." v-model="search" @input="searchOnTable" />
         </md-field>
+      </md-table-toolbar>
+
+      <md-table-toolbar slot="md-table-alternate-header" slot-scope="{ count }">
+        <div class="md-toolbar-section-start">{{ getAlternateLabel(count) }}</div>
+
+        <div class="md-toolbar-section-end">
+          <md-button class="md-icon-button">
+            <md-icon>delete</md-icon>
+          </md-button>
+        </div>
       </md-table-toolbar>
 
       <md-table-empty-state
@@ -17,7 +27,7 @@
         <md-button class="md-primary md-raised" @click="newUser">Create New User</md-button>
       </md-table-empty-state>
 
-      <md-table-row slot="md-table-row" slot-scope="{ item }">
+      <md-table-row slot="md-table-row" slot-scope="{ item }" md-selectable="multiple" md-auto-select>
         <md-table-cell md-label="ID" md-sort-by="id" md-numeric>{{ item.id }}</md-table-cell>
         <md-table-cell md-label="Name" md-sort-by="name">{{ item.name }}</md-table-cell>
         <md-table-cell md-label="Email" md-sort-by="email">{{ item.email }}</md-table-cell>
@@ -45,6 +55,7 @@ export default {
   data: () => ({
     search: null,
     searched: [],
+    selected: [],
     users: [
       {
         id: 1,
@@ -189,14 +200,26 @@ export default {
     ]
   }),
   methods: {
-    newUser () {
+    newUser() {
       window.alert('Noop')
     },
-    searchOnTable () {
+    searchOnTable() {
       this.searched = searchByName(this.users, this.search)
+    },
+    onSelect(users) {
+      this.selected = users
+    },
+    getAlternateLabel(count) {
+      let plural = ''
+
+      if (count > 1) {
+        plural = 's'
+      }
+
+      return `${count} user${plural} selected`
     }
   },
-  created () {
+  created() {
     this.searched = this.users
   }
 }

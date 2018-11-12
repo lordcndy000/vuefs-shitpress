@@ -1,9 +1,5 @@
 <template>
-  <md-app>
-    <md-app-content>
-      <Treasures />
-    </md-app-content>
-  </md-app>
+  <Treasures />
 </template>
 
 <script>
@@ -14,9 +10,6 @@ export default {
   components: {
     Treasures
   }
-  // props: {
-  //   msg: String
-  // }
 }
 </script>
 
